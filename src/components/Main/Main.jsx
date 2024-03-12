@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import FeaturedPosts from '../FeaturedPosts/FeaturedPosts'
 import ArticleGrid from '../ArticleList/ArticleGrid'
 import { getAllArticles } from '../../utils/api'
-
+import Loading from '../../utils/Loading'
 
 
 const Main = () => {
@@ -19,8 +19,9 @@ const Main = () => {
   return (
     <div>
 
-        <FeaturedPosts />
-        <ArticleGrid className='article-grid' allArticles={allArticles}/>
+    
+        {loading ? <Loading /> : <ArticleGrid className='article-grid' allArticles={allArticles}/>}
+        
     </div>
   )
 }
