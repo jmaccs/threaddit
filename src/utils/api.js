@@ -23,6 +23,12 @@ export const getArticle = (id) => {
     });
 };
 
+export const getComments = (id) => {
+  return threadditApi.get(`/articles/${id}/comments`).then((response) => response).catch((error) => {
+    throw error
+  })
+}
+
 // export const getItem = (itemId) => {
 //   return marketplaceApi.get(`/items/${itemId}`)
 //     .then(response => response)
