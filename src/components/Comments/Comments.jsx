@@ -4,29 +4,33 @@ import {getComments} from '../../utils/api'
 
 const Comments = () => {
     const [comments, setComments] = useState([])
+    
     const {id} = useParams()
     useEffect(() => {
       getComments(id).then((res) =>{
         const comments = res.data.comments
-        console.log(comments);
         setComments(comments)
       })
     }, [])
   return (
-    <div className='comment-container'>
-        <ul>
+ 
+        <ul className='comment-container'>
           {comments.map((comment) => {
-            return <li className='comment-item' key={comment.comment_id}>
-              <p className='comment-body'>{comment.body}</p>
-              <hr />
-              <h4>
-              Author: {comment.author}|     
-              {comment.created_at.slice(0, 10)}|
-              {comment.votes}👏</h4>
+            return <><li className='comment-statbar' key={comment.comment_id}>
+             
+              
+              <h4><br />
+              <button>⇧</button><br />{comment.votes}<br /><button>⇩</button><br />
+              {comment.author}<br />     
+              {comment.created_at.slice(0, 10)}<br />
+              
+              </h4>
             </li>
+            <div className='comment-body'>{comment.body}</div>
+            </>
           })}
         </ul>
-    </div>
+   
   )
 }
 

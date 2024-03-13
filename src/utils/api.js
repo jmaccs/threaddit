@@ -1,6 +1,7 @@
 import axios from "axios";
 
 
+
 const threadditApi = axios.create({
   baseURL: "https://news-crush.onrender.com/api",
 });
@@ -25,6 +26,13 @@ export const getArticle = (id) => {
 
 export const getComments = (id) => {
   return threadditApi.get(`/articles/${id}/comments`).then((response) => response).catch((error) => {
+    throw error
+  })
+}
+
+export const patchArticleVotes = (id, vote) => {
+  const voteBody = { inc_votes: vote };
+  return threadditApi.patch(`/articles/${id}`, voteBody).then((response) => response).catch((error) => {
     throw error
   })
 }

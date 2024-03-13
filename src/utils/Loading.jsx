@@ -2,7 +2,9 @@ import React from 'react'
 
 const Loading = () => {
   return (
-    <div className='lds-dual-ring'>Loading...</div>
+    <div className='loading-container'>
+      <div className='lds-dual-ring'>Loading...</div>
+    </div>
   )
 }
 
