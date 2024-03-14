@@ -45,7 +45,7 @@ const ArticleDetail = () => {
   const handlePending = (message) => {
     toast.info(message, {
       position: "bottom-center",
-      autoClose: 5000,
+      autoClose: 2500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

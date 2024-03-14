@@ -240,7 +240,14 @@ header {
   justify-self: center;
   align-self: center;
 }
-
+.delete-comment-button {
+ 
+  cursor: pointer;
+  color: red;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
 
 .comment-container {
   display: grid;
@@ -328,22 +335,17 @@ header {
 .comment-footer {
   display: grid;
   grid-area: c;
-  justify-content: center;
   padding-top: .5rem;
   font-size: 0.8rem;
-  border-top: .1px dashed #716e69;
-  border-bottom: .1px solid #716e69;
-  color: black;
+
+  
+  color: #474747;
 }
 .comment-sidebar p {
   margin: 0;
   font-size: 1rem;
 }
-.comment-footer p {
-  margin: 0;
-  font-size: .5rem;
-  
-}
+
 
 @keyframes bounce {
   20% {

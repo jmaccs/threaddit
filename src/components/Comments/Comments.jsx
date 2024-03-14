@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import PostComment from './PostComment'
-import {getComments, postComment} from '../../utils/api'
+import {getComments, postComment, deleteComment} from '../../utils/api'
 
 
 const Comments = ({articleId, handlePending,handleApiError, handleSubmitSuccess}) => {
@@ -17,7 +17,6 @@ const Comments = ({articleId, handlePending,handleApiError, handleSubmitSuccess}
     }, [])
     const onCommentSubmit = (comment) => {
       handlePending("Posting comment...")
-      console.log("comment is ->",JSON.stringify(comment), "article id is ->", articleId)
       postComment(comment, articleId).then((res)=>{
         const postedComment = res.data.comment
    
@@ -26,8 +25,17 @@ const Comments = ({articleId, handlePending,handleApiError, handleSubmitSuccess}
         })
         handleSubmitSuccess("Comment posted!")
       }).catch((error) => {
-        console.log(error)
         handleApiError("Error submitting - please try again.")
+      })
+    }
+    const handleDeleteComment = (comment_id) => {
+      handlePending("Deleting comment...")
+      deleteComment(comment_id).then((res) => {
+        setComments((comments) => {
+          return comments.filter((comment) => comment.comment_id !== comment_id)
+        })
+      }).catch((error) => {
+        handleApiError("Error deleting comment - please try again.")
       })
     }
   return (
@@ -42,11 +50,12 @@ const Comments = ({articleId, handlePending,handleApiError, handleSubmitSuccess}
           ⇧</p>
           {comment.votes}
           <p className='vote-arrow'>⇩</p>
+        
     </div>
     <div className='comment-body'>{comment.body}</div>
     <div className='comment-footer'>
         {comment.author} &nbsp; | &nbsp; 
-        {comment.created_at.slice(0, 10)}
+        {comment.created_at.slice(0, 10)} &nbsp;   <p className= 'delete-comment-button' onClick={() => handleDeleteComment(comment.comment_id)}>🗑️</p>
     </div>
       </li>
     ))}
