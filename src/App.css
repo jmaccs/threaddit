@@ -159,9 +159,9 @@ header {
   font-size: .5rem;
   font-weight: 500;
 }
-.article-detail-parent {
+.article-comments-parent {
   width: auto;
- 
+  height:auto;
  
 }
 .article-detail-container {
@@ -237,40 +237,112 @@ header {
 
 .vote-arrow {
   cursor: pointer;
+  justify-self: center;
+  align-self: center;
 }
-.vote-arrow
 
 
 .comment-container {
   display: grid;
-  margin-top: 4rem;
-  grid-template-columns: 10% 90%;
-  list-style: none;
-  width: 100%;
-
+  grid-template-areas: 
+  "a b b b b b"
+  "a b b b b b"
+  "a b b b b b"
+  "a b b b b b"
+  "a c c c c c";
+  margin-top: 1px;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  height: auto;
+  background-color: #FFF; 
+  color: black;  
 }
-
-.comment-statbar {
-  display: grid;
-  background-color: #F8F9FA;
-  border: .1px dashed #D5C4A1;
+.post-comment-input {
+  width: 20vw;
+  height: 2vh;
   color: black;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border: .1px solid #D5C4A1;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #ebebeb;
+}
+.post-comment-button {
+  width: 10vw;
+  height: 2vh;
+  border: .1px solid #D5C4A1;
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  background-color: #ebebeb;
+  color: black;
+  
+}
+.post-comment-form {
+  display: flex;
+  margin: 1rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
 
 }
 
+.comments-parent {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: auto;
+  margin-top:1vh;
+  margin-left: 10vw;
+  height: 100%;
+  width: 80vw;
+  background-color: #FFF;
+  color: black;
+  align-items: center;
+  height: 100%;
+  border: .1px solid #D5C4A1;
+  background-color: #F8F9FA;
+
+
+}
+.comment-sidebar {
+  grid-area: a;
+  align-items: center;
+  justify-content: center;
+  width: 8vw;
+  font-size: 1rem;
+  background-color: #F8F9FA; 
+  color: black; 
+  border: .1px solid #716e69;
+  border-bottom: none;
+}
 
 .comment-body {
-  display: grid;
-  text-align: left;
-  color: #2A2A2A;
-  background-color: #F8F9FA;
-  height: 200px;
-  border: .1px solid #D5C4A1;
-  font-size: 1rem;
-  font-weight: 300;
-  font-family: Arial, Helvetica, sans-serif;
+  padding: 1rem;
+  grid-area: b;
+  background-color: #ffffff; 
+  color: black; 
+}
 
+.comment-footer {
+  display: grid;
+  grid-area: c;
+  justify-content: center;
+  padding-top: .5rem;
+  font-size: 0.8rem;
+  border-top: .1px dashed #716e69;
+  border-bottom: .1px solid #716e69;
+  color: black;
+}
+.comment-sidebar p {
+  margin: 0;
+  font-size: 1rem;
+}
+.comment-footer p {
+  margin: 0;
+  font-size: .5rem;
+  
 }
 
 @keyframes bounce {

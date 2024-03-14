@@ -31,9 +31,31 @@ const ArticleDetail = () => {
       progress: undefined,
     });
   }
+  const handleSubmitSuccess = (message) => {
+    toast.success(message, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+  const handlePending = (message) => {
+    toast.info(message, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   return (
-    <div className='article-detail-parent'>
+    <div className='article-comments-parent'>
       <ToastContainer />
     <div className='article-detail-container'>
       <ArticleSidebar article={article} handleApiError={handleApiError}/>
@@ -48,7 +70,7 @@ const ArticleDetail = () => {
       <p>{article.body}</p>
     </article></>}
     </div>
-    <Comments />
+    <Comments articleId={id} handleApiError={handleApiError} handlePending={handlePending} handleSubmitSuccess={handleSubmitSuccess}/>
     </div>
    
     
