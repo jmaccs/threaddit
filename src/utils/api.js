@@ -43,6 +43,11 @@ export const postComment = (comment, id) => {
     throw error
   })
 }
+export const deleteComment = (comment_id) => {
+  return threadditApi.delete(`/comments/${comment_id}`).then((response) => response).catch((error) => {
+    throw error
+  })
+}
 
 
 // export const getItem = (itemId) => {
