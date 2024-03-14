@@ -1,38 +1,62 @@
 import {React, useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import {getComments} from '../../utils/api'
+import PostComment from './PostComment'
+import {getComments, postComment} from '../../utils/api'
 
-const Comments = () => {
+
+const Comments = ({articleId, handlePending,handleApiError, handleSubmitSuccess}) => {
     const [comments, setComments] = useState([])
-    
-    const {id} = useParams()
+   
+
     useEffect(() => {
-      getComments(id).then((res) =>{
+      getComments(articleId).then((res) =>{
+        
         const comments = res.data.comments
         setComments(comments)
       })
     }, [])
-  return (
- 
-        <ul className='comment-container'>
-          {comments.map((comment) => {
-            return <><li className='comment-statbar' key={comment.comment_id}>
-             
-              
-              <h4><br />
-              <button>⇧</button><br />{comment.votes}<br /><button>⇩</button><br />
-              {comment.author}<br />     
-              {comment.created_at.slice(0, 10)}<br />
-              
-              </h4>
-            </li>
-            <div className='comment-body'>{comment.body}</div>
-            </>
-          })}
-        </ul>
+    const onCommentSubmit = (comment) => {
+      handlePending("Posting comment...")
+      console.log("comment is ->",JSON.stringify(comment), "article id is ->", articleId)
+      postComment(comment, articleId).then((res)=>{
+        const postedComment = res.data.comment
    
+        setComments((comments) => {
+          return [postedComment, ...comments]
+        })
+        handleSubmitSuccess("Comment posted!")
+      }).catch((error) => {
+        console.log(error)
+        handleApiError("Error submitting - please try again.")
+      })
+    }
+  return (
+    <div className='comments-parent'>
+    <PostComment articleId={articleId} onCommentSubmit={onCommentSubmit}/>
+
+    <ul >
+    {comments.map((comment, index) => (
+       <li className='comment-container' key={index}>
+        <div className='comment-sidebar'>
+        <p className='vote-arrow' >
+          ⇧</p>
+          {comment.votes}
+          <p className='vote-arrow'>⇩</p>
+    </div>
+    <div className='comment-body'>{comment.body}</div>
+    <div className='comment-footer'>
+        {comment.author} &nbsp; | &nbsp; 
+        {comment.created_at.slice(0, 10)}
+    </div>
+      </li>
+    ))}
+  </ul>
+  </div>
   )
 }
 
 export default Comments
+
+
+
 

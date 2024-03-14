@@ -30,12 +30,20 @@ export const getComments = (id) => {
   })
 }
 
-export const patchArticleVotes = (id, vote) => {
+export const patchArticleVotes = ( vote, id) => {
   const voteBody = { inc_votes: vote };
   return threadditApi.patch(`/articles/${id}`, voteBody).then((response) => response).catch((error) => {
     throw error
   })
 }
+
+export const postComment = (comment, id) => {
+  console.log(id);
+  return threadditApi.post(`/articles/${id}/comments`, comment).then((response) => response).catch((error) => {
+    throw error
+  })
+}
+
 
 // export const getItem = (itemId) => {
 //   return marketplaceApi.get(`/items/${itemId}`)
