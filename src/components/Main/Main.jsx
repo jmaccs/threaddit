@@ -3,7 +3,8 @@ import ArticleGrid from '../ArticleList/ArticleGrid'
 import { getAllArticles } from '../../utils/api'
 import Loading from '../../utils/Loading'
 import {useParams} from 'react-router-dom'
-
+import { ToastContainer } from 'react-toastify'
+import {handleError} from '../Toast/Toast'
 
 const Main = () => {
   const [loading, setLoading] = useState(true)
@@ -18,6 +19,9 @@ const Main = () => {
       if(topic){
         data = data.filter(article => article.topic === topic)
       }
+      if(data.length === 0){
+        handleError('No articles found')
+      }
       data.sort((a,b) =>{
         const [key, order] = sort.split(',')
         if(order === 'desc'){
@@ -28,6 +32,8 @@ const Main = () => {
       })
       setArticles(data)
       setLoading(false)
+    }).catch(err => {
+      handleError('No articles found', err)
     })
   }, [topic, sort])
   const handleSortChange = (e) => {
@@ -35,6 +41,7 @@ const Main = () => {
  }
   return (
     <div className='main-container'>
+      <ToastContainer />
         <select className='sort-select' onChange={handleSortChange} placeholder='Sort by'>
         <option value="date,desc" defaultChecked>Date (Newest)</option>
         <option value="date,asc">Date (Oldest)</option>
@@ -43,6 +50,7 @@ const Main = () => {
         <option value="votes,desc">Votes (High to Low)</option>
         <option value="votes,asc">Votes (Low to High)</option>
       </select>
+      <hr className=''/>
     
         {loading ? <Loading /> : <ArticleGrid className='article-grid' articles={articles}/>}
         

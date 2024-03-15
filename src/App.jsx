@@ -7,6 +7,7 @@ import Comments from './components/Comments/Comments'
 import Users from './components/Users/Users'
 import {UserContext} from './context/User'
 import ToggleUser from './components/Header/ToggleUser'
+import NotFound from './components/NotFound/NotFound'
 
 import './App.css'
 
@@ -24,6 +25,7 @@ function App() {
         <Route path ="/articles/:id/comments" element={<Comments />} />
         <Route path="/users" element={<Users />} />
         <Route path="/topics/:topic" element={<Main />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       </UserContext.Provider>
     </div>

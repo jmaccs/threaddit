@@ -13,7 +13,7 @@ const ArticleGrid = ({articles}) => {
           <div className ='article-image-container'>
           <img className='article-image' src={article.article_img_url}/>
           <div className='article-image-text'>
-            {article.topics}
+            #{article.topic}
           </div>
           </div>
           <div className='article-text'>
