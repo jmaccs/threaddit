@@ -15,7 +15,7 @@ const Dropdown = () => {
     <div className='dropdown-container'>
         
             <button className='dropdown-button'>
-                 ⇩threads⇩</button>
+                 ⇩🧵⇩</button>
                 <div className='dropdown-menu' > 
                     {topics.map((topic) => {
                         return <Link to={`/topics/${topic.slug}`} key={topic.slug}><h2>{topic.slug}</h2><br /></Link> 
