@@ -40,7 +40,13 @@
     transform: rotate(360deg);
   }
 }
-
+.not-found-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
 .header-container {
 
   width: 100%;

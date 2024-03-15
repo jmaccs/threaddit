@@ -6,6 +6,7 @@ import Loading from '../../utils/Loading'
 import Comments from '../Comments/Comments'
 import ArticleSidebar from './ArticleSidebar'
 import { ToastContainer } from 'react-toastify'
+import { handleError } from '../Toast/Toast'
 
 
 const ArticleDetail = () => {
@@ -16,6 +17,9 @@ const ArticleDetail = () => {
     getArticle(id).then((res) =>{
       const article = res.data.article
       setArticle(article)
+      setIsLoading(false)
+    }).catch(err => {
+      handleError('No article found', err)
       setIsLoading(false)
     })
   }, [id])
