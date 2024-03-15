@@ -40,15 +40,14 @@
     transform: rotate(360deg);
   }
 }
-header {
-  width: 100%;
-  max-height: fit-content;
-}
+
 .header-container {
 
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 20vw [logo] 20vw [search] 30vw [nav];
+  height: 15vh;
+  align-items: center;
   background-color: #E193DB; 
   position: fixed;
   top: 0;
@@ -58,21 +57,90 @@ header {
 }
 .search-bar {
  
-  width: 50%;
-  height: 1.5rem;
-  border-radius: 1rem;
+  width: 60%;
+  grid-column: search;
+  display: inline-block;
+  height: 1rem;
+  border-radius: .5rem;
   border: 1px solid black;
-  margin-top: 1rem;
-  padding: 1rem;
+  padding: .5rem;
+  margin-top: 5vh;
   font-size: 1.5rem;
 }
 .header-container h1 {
   text-decoration: none;
   color: white;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 500;
   margin-top: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
+}
+.logo {
+  display: inline-block;
+  margin-inline-start: 1rem;
+  grid-column: logo;
+}
+.toggle-user {
+  grid-column: nav;
+  grid-row: 1;
+  justify-self: end;
+  margin-right: 2rem;
+  margin-top: 1rem;
+
+  width: 5rem;
+}
+.toggle-user button {
+  font-size: larger;
+}
+
+.dropdown-container {
+  grid-column: nav;
+  display: flex;
+  grid-row: 1;
+  width: 8rem;
+  position: relative;
+
+
+}
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  transform: scaleY(0);
+  transition: transform 0.1s ease-in-out;
+  position: absolute;
+  width: 100%;
+  top: 80%;
+  margin-top: 2vh;
+  background-color: #E193DB;
+  color: white;
+  z-index: 1500;
+  border-radius: .5rem;
+  transform-origin: top;
+}
+.dropdown-container:hover .dropdown-menu {
+  transform: scaleY(1);
+  border: .5px outset black;
+  border-top: none;
+  border-radius: .5rem;
+
+
+}
+.dropdown-menu a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: white;
+  font-weight: 300; 
+}
+.dropdown-menu a:hover {
+  -webkit-text-stroke-width: .2px;
+  -webkit-text-stroke-color: #ff2f92;
+}
+.dropdown-button {
+  background-color: #E193DB;
+  margin-top: 2rem;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
 }
 
 
