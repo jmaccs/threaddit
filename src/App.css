@@ -142,8 +142,23 @@
   color: white;
   font-size: 1.5rem;
 }
-
-
+.main-container {
+  display: grid;
+}
+.sort-select {
+  width: 20vw;
+  height: 5vh;
+  border: .1px solid #D5C4A1;
+  padding: 1.5rem;
+  margin-top: 15vh;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  background-color: #ebebeb;
+  color: black;
+}
 
 
 .article-grid {
@@ -152,7 +167,7 @@
   grid-gap: 5px;
   justify-content: center;
   align-items: center;
-  margin-top: 8rem;
+  margin-top: 5rem;
 
 
 }

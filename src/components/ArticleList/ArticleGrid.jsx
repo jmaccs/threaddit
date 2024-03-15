@@ -21,7 +21,7 @@ const ArticleGrid = ({articles}) => {
             <h2>{article.title}</h2>
             </Link>
             <h3>By: {article.author}</h3>
-            <p>💄 {article.votes} | 🗣️ {article.comment_count} </p>  <p>📅 {article.created_at.slice(0, 10)}</p>
+            <p>❤️ {article.votes} | 🗣️ {article.comment_count} </p>  <p>📅 {article.created_at.slice(0, 10)}</p>
           
           </div>
           </li>
