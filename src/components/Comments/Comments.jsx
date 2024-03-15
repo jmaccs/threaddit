@@ -53,6 +53,7 @@ const Comments = ({articleId}) => {
     {comments.map((comment, index) => (
        <li className='comment-container' key={index}>
         <div className='comment-sidebar'>
+       
         <p className='vote-arrow' >
           ⇧</p>
           {comment.votes}

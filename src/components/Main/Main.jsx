@@ -43,6 +43,7 @@ const Main = () => {
     <div className='main-container'>
       <ToastContainer />
         <select className='sort-select' onChange={handleSortChange} placeholder='Sort by'>
+        <option value=''>Sort by</option>
         <option value="date,desc" defaultChecked>Date (Newest)</option>
         <option value="date,asc">Date (Oldest)</option>
         <option value="comment_count,desc">Comment Count (High to Low)</option>
