@@ -50,6 +50,7 @@ const Main = () => {
         <option value="votes,desc">Votes (High to Low)</option>
         <option value="votes,asc">Votes (Low to High)</option>
       </select>
+      <hr className=''/>
     
         {loading ? <Loading /> : <ArticleGrid className='article-grid' articles={articles}/>}
         

@@ -13,16 +13,12 @@ const Header = () => {
       <Link to='/'>
       <h1 className='logo'>threaddit</h1>
       </Link>
-      <input className='search-bar'
-      type='text'
-      placeholder='search'
-      />
     
       <Dropdown />
       <ToggleUser />
 
 
-      <hr />  
+
       
     </div>
   </header>
