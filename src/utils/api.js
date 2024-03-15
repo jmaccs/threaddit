@@ -48,7 +48,11 @@ export const deleteComment = (comment_id) => {
     throw error
   })
 }
-
+export const getTopics = () => {
+  return threadditApi.get('/topics').then((response) => response).catch((error) => {
+    throw error
+  })
+}
 
 // export const getItem = (itemId) => {
 //   return marketplaceApi.get(`/items/${itemId}`)

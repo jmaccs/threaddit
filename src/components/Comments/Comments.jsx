@@ -1,12 +1,14 @@
-import {React, useState, useEffect} from 'react'
+import {React, useState, useEffect, useContext} from 'react'
 import {useParams} from 'react-router-dom'
 import PostComment from './PostComment'
 import {getComments, postComment, deleteComment} from '../../utils/api'
+import { handleError, handlePending, handleSuccess } from '../Toast/Toast'
+import {UserContext} from '/src/context/User';
 
 
-const Comments = ({articleId, handlePending,handleApiError, handleSubmitSuccess}) => {
+const Comments = ({articleId}) => {
     const [comments, setComments] = useState([])
-   
+    const {user} = useContext(UserContext)
 
     useEffect(() => {
       getComments(articleId).then((res) =>{
@@ -16,6 +18,10 @@ const Comments = ({articleId, handlePending,handleApiError, handleSubmitSuccess}
       })
     }, [])
     const onCommentSubmit = (comment) => {
+      if (!user){
+        handleError("You must be logged in to post a comment.")
+        return
+      }
       handlePending("Posting comment...")
       postComment(comment, articleId).then((res)=>{
         const postedComment = res.data.comment
@@ -23,19 +29,20 @@ const Comments = ({articleId, handlePending,handleApiError, handleSubmitSuccess}
         setComments((comments) => {
           return [postedComment, ...comments]
         })
-        handleSubmitSuccess("Comment posted!")
+        handleSuccess("Comment posted!")
       }).catch((error) => {
-        handleApiError("Error submitting - please try again.")
+        handleError("Error submitting - please try again.")
       })
     }
     const handleDeleteComment = (comment_id) => {
+     
       handlePending("Deleting comment...")
       deleteComment(comment_id).then((res) => {
         setComments((comments) => {
           return comments.filter((comment) => comment.comment_id !== comment_id)
         })
       }).catch((error) => {
-        handleApiError("Error deleting comment - please try again.")
+        handleError("Error deleting comment - please try again.")
       })
     }
   return (
@@ -55,7 +62,7 @@ const Comments = ({articleId, handlePending,handleApiError, handleSubmitSuccess}
     <div className='comment-body'>{comment.body}</div>
     <div className='comment-footer'>
         {comment.author} &nbsp; | &nbsp; 
-        {comment.created_at.slice(0, 10)} &nbsp;   <p className= 'delete-comment-button' onClick={() => handleDeleteComment(comment.comment_id)}>🗑️</p>
+        {comment.created_at.slice(0, 10)} &nbsp;  {user === comment.author && <p className= 'delete-comment-button' onClick={() => handleDeleteComment(comment.comment_id)}>🗑️</p>}
     </div>
       </li>
     ))}
